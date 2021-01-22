@@ -1,0 +1,15 @@
+{
+  "name": "gulp1-practice",
+  "version": "1.0.0",
+  "description": "【Udemy】初心者のためのフロントエンド環境構築入門-Gulp編",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  }
+}
