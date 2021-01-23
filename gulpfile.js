@@ -1,9 +1,10 @@
 const {src, dest} = require('gulp');
-const rename = require('gulp-rename');
+const loadPlugins = require('gulp-load-plugins');
+const $ = loadPlugins();
 
 function copyFiles(){
   return src('./src/**/*.html')
-    .pipe(rename({
+    .pipe($.rename({
       prefix: 'hello-'
     }))
     .pipe(dest('./dist'));
