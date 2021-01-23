@@ -11,3 +11,16 @@ function copyFiles(){
 }
 
 exports.copyFiles = copyFiles;
+
+function icon(){
+  return src('./src/images/favicon.png')
+    .pipe($.imageResize({
+      width: 100,
+      height: 100,
+      crop: true,
+      upscale: false
+    }))
+    .pipe(dest('./dist/images'));
+}
+
+exports.icon = icon;
