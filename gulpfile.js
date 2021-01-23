@@ -4,6 +4,7 @@ const $ = loadPlugins();
 const pkg = require('./package.json');
 const conf = pkg["gulp-config"];
 const sizes = conf.sizes;
+const autoprefixer = require('autoprefixer');
 
 function copyFiles(){
   return src('./src/**/*.html')
@@ -53,6 +54,9 @@ function styles() {
   return src('./src/sass/main.scss')
     .pipe($.sourcemaps.init())
     .pipe($.sass())
+    .pipe($.postcss([
+      autoprefixer()
+    ]))
     .pipe($.sourcemaps.write('.'))
     .pipe(dest('./dist/css'))
 }
