@@ -1,6 +1,7 @@
 h1 {
   color: blue;
   transition: all, 0.3s;
+  user-select: none;
 
   &:hover {
     transform: translateX(50px);
