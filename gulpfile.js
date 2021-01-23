@@ -51,7 +51,9 @@ exports.favicon = favicon;
 
 function styles() {
   return src('./src/sass/main.scss')
+    .pipe($.sourcemaps.init())
     .pipe($.sass())
+    .pipe($.sourcemaps.write('.'))
     .pipe(dest('./dist/css'))
 }
 
