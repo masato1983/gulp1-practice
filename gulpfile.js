@@ -47,4 +47,12 @@ function favicon(done) {
   done();
 }
 
-exports.favicon = favicon
+exports.favicon = favicon;
+
+function styles() {
+  return src('./src/sass/main.scss')
+    .pipe($.sass())
+    .pipe(dest('./dist/css'))
+}
+
+exports.styles = styles;
