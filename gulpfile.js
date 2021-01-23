@@ -20,6 +20,7 @@ function icon(){
       crop: true,
       upscale: false
     }))
+    .pipe($.imagemin())
     .pipe(dest('./dist/images'));
 }
 
