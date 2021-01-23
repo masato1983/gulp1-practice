@@ -1,20 +1,9 @@
 const {src, dest} = require('gulp');
 const loadPlugins = require('gulp-load-plugins');
 const $ = loadPlugins();
-const sizes = [
-  [ 16, 16 ],
-  [ 32, 32 ],
-  [ 48, 48 ],
-  [ 57, 57 ],
-  [ 76, 76 ],
-  [ 120, 120 ],
-  [ 128, 128 ],
-  [ 152, 152 ],
-  [ 167, 167 ],
-  [ 180, 180 ],
-  [ 192, 192 ],
-  [ 512, 512 ],
-];
+const pkg = require('./package.json');
+const conf = pkg["gulp-config"];
+const sizes = conf.sizes;
 
 function copyFiles(){
   return src('./src/**/*.html')
