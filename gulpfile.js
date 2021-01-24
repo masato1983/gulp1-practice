@@ -60,6 +60,13 @@ function scripts(){
   .pipe($.sourcemaps.write('.'))
   .pipe(dest('./dist/js'))}
 
+function lint() {
+  return src('./src/js/*.js')
+    .pipe($.eslint({fix: true}))
+    .pipe($.eslint.format())
+    .pipe($.eslint.failAfterError())
+    .pipe(dest('./src/js'))}
+
 function startAppServer(){
   server.init({
     server: {
@@ -74,4 +81,5 @@ exports.icon = icon;
 exports.favicon = favicon;
 exports.styles = styles;
 exports.scripts = scripts;
+exports.lint = lint;
 exports.serve = startAppServer;
