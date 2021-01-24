@@ -1,4 +1,4 @@
-const {src, dest, watch} = require('gulp');
+const { src, dest, watch, series, parallel } = require('gulp');
 const loadPlugins = require('gulp-load-plugins');
 const $ = loadPlugins();
 const pkg = require('./package.json');
@@ -76,10 +76,12 @@ function startAppServer(){
   watch('./src/**/*.scss', styles);
   watch('./src/**/*.scss').on('change', server.reload);}
 
+const serve = series(parallel(styles, series(lint, scripts)), startAppServer);
+
 exports.copyFiles = copyFiles;
 exports.icon = icon;
 exports.favicon = favicon;
 exports.styles = styles;
 exports.scripts = scripts;
 exports.lint = lint;
-exports.serve = startAppServer;
+exports.serve = serve;
