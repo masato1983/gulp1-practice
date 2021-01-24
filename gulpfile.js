@@ -11,24 +11,18 @@ function copyFiles(){
     .pipe($.rename({
       prefix: 'hello-'
     }))
-    .pipe(dest('./dist'));
-}
-
-exports.copyFiles = copyFiles;
+    .pipe(dest('./dist'));}
 
 function icon(){
   return src('./src/images/favicon.png')
-    .pipe($.imageResize({
-      width: 100,
-      height: 100,
-      crop: true,
-      upscale: false
-    }))
-    .pipe($.imagemin())
-    .pipe(dest('./dist/images'));
-}
-
-exports.icon = icon;
+  .pipe($.imageResize({
+    width: 100,
+    height: 100,
+    crop: true,
+    upscale: false
+  }))
+  .pipe($.imagemin())
+    .pipe(dest('./dist/images'));}
 
 function favicon(done) {
   for(let size of sizes){
@@ -43,22 +37,23 @@ function favicon(done) {
     }))
     .pipe($.imagemin())
     .pipe($.rename(`favicon-${width}×${height}.png`))
-    .pipe(dest('./dist/images'));
+  .pipe(dest('./dist/images'));
   }
-  done();
-}
-
-exports.favicon = favicon;
+  done();}
 
 function styles() {
   return src('./src/sass/main.scss')
-    .pipe($.sourcemaps.init())
-    .pipe($.sass())
-    .pipe($.postcss([
-      autoprefixer()
-    ]))
-    .pipe($.sourcemaps.write('.'))
-    .pipe(dest('./dist/css'))
-}
+  .pipe($.sourcemaps.init())
+  .pipe($.sass())
+  .pipe($.postcss([
+    autoprefixer()
+  ]))
+  .pipe($.sourcemaps.write('.'))
+  .pipe(dest('./dist/css'))}
 
-exports.styles = styles;
+
+
+  exports.copyFiles = copyFiles;
+  exports.icon = icon;
+  exports.favicon = favicon;
+  exports.styles = styles;
