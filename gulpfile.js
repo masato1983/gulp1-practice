@@ -53,6 +53,12 @@ function styles() {
   .pipe($.sourcemaps.write('.'))
   .pipe(dest('./dist/css'))}
 
+function scripts(){
+  return src('./src/js/*.js')
+    .pipe($.babel())
+    .pipe(dest('./dist/js'))
+}
+
 function startAppServer(){
   server.init({
     server: {
@@ -60,11 +66,11 @@ function startAppServer(){
     }
   })
   watch('./src/**/*.scss', styles);
-  watch('./src/**/*.scss').on('change', server.reload);
-}
+  watch('./src/**/*.scss').on('change', server.reload);}
 
 exports.copyFiles = copyFiles;
 exports.icon = icon;
 exports.favicon = favicon;
 exports.styles = styles;
+exports.scripts = scripts;
 exports.serve = startAppServer;
