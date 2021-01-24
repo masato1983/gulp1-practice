@@ -7,6 +7,7 @@ const sizes = conf.sizes;
 const autoprefixer = require('autoprefixer');
 const browserSync = require('browser-sync');
 const server = browserSync.create();
+const isProd = process.env.NODE_ENV === "production";
 
 function copyFiles(){
   return src('./src/**/*.html')
@@ -45,19 +46,19 @@ function favicon(done) {
 
 function styles() {
   return src('./src/sass/main.scss')
-  .pipe($.sourcemaps.init())
+  .pipe($.if(!isProd, $.sourcemaps.init()))
   .pipe($.sass())
   .pipe($.postcss([
     autoprefixer()
   ]))
-  .pipe($.sourcemaps.write('.'))
+  .pipe($.if(!isProd, $.sourcemaps.write('.')))
   .pipe(dest('./dist/css'))}
 
 function scripts(){
   return src('./src/js/*.js')
-  .pipe($.sourcemaps.init())
+  .pipe($.if(!isProd, $.sourcemaps.init()))
   .pipe($.babel())
-  .pipe($.sourcemaps.write('.'))
+  .pipe($.if(!isProd, $.sourcemaps.write('.')))
   .pipe(dest('./dist/js'))}
 
 function lint() {
