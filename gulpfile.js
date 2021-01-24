@@ -55,9 +55,10 @@ function styles() {
 
 function scripts(){
   return src('./src/js/*.js')
-    .pipe($.babel())
-    .pipe(dest('./dist/js'))
-}
+  .pipe($.sourcemaps.init())
+  .pipe($.babel())
+  .pipe($.sourcemaps.write('.'))
+  .pipe(dest('./dist/js'))}
 
 function startAppServer(){
   server.init({
