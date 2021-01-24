@@ -1,4 +1,4 @@
-const {src, dest} = require('gulp');
+const {src, dest, watch} = require('gulp');
 const loadPlugins = require('gulp-load-plugins');
 const $ = loadPlugins();
 const pkg = require('./package.json');
@@ -51,9 +51,12 @@ function styles() {
   .pipe($.sourcemaps.write('.'))
   .pipe(dest('./dist/css'))}
 
+function startAppServer(){
+  watch('./src/**/*.scss', styles);
+}
 
-
-  exports.copyFiles = copyFiles;
-  exports.icon = icon;
-  exports.favicon = favicon;
-  exports.styles = styles;
+exports.copyFiles = copyFiles;
+exports.icon = icon;
+exports.favicon = favicon;
+exports.styles = styles;
+exports.serve = startAppServer;
